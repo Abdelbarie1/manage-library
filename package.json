@@ -1,0 +1,19 @@
+{
+  "name": "gestionbiblio",
+  "version": "1.0.0",
+  "description": "This is a Spring Boot Application with MySQL database program ",
+  "main": " src\\main\\resources\\templates\\acceuil.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdelbarie1/manage-library.git"
+  },
+  "author": "Abdelbarie Ayouni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdelbarie1/manage-library/issues"
+  },
+  "homepage": "https://github.com/Abdelbarie1/manage-library#readme"
+}

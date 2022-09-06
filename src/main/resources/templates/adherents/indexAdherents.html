@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	<link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	
+	
+	
+</head>
+<style>
+body {
+  background-color: #F5F7FA;
+}
+		.nav{
+			color: white;
+		}
+      
+.text-center{
+	background:	#2f4f4f;
+	color: white;
+	position:absolute;
+	bottom:0;
+	width:100%;
+	padding-top:50px;
+	height:190px;
+    }
+</style>
+<body>
+<p></p>
+
+<div class="container mt-5"  layout:fragment="content">
+<form th:action="@{/adherents/chercher}" method="get">
+<label> Enter CIN:</label>
+<input type="text" name="cin" th:value="${cin}"/>
+<button >Chercher </button>
+
+
+
+</form>
+
+<table class="table table-striped">
+  <caption><h4>La liste des adherents</h4></caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">nom</th>
+      <th scope="col">prenom</th>
+      <th scope="col">adresse</th>
+      <th scope="col">CIN</th>
+      <th scope="col">date de naissance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="a:${adherents}">
+      <th scope="row" th:text="${a.getId()}"></th>
+      <td th:text="${a.getNom()}"></td>
+      <td th:text="${a.getPrenom}"></td>
+      <td th:text="${a.getAdresse()}"></td>
+       <td th:text="${a.getCin()}"></td>
+      <td th:text="${a.getDateNaissance()}"></td>
+      <td ><a th:href="@{/adherents/updateAdherent(cin=${a.getCin()})}" class="btn btn-primary">Edit</a></td>
+      <td ><a th:href="@{/adherents/deleteAdherent(id=${a.getId()},page=${pageCourante},size=${size})}" class="btn btn-danger">Delete</a></td>
+      <td ><a th:href="@{/adherents/consulterAdherent(cin=${a.getCin()})}" class="btn btn-primary">Consulter</a></td>
+</tr>  
+  </tbody>
+</table >
+<div>
+<ul >
+<li  th:class="${pageCourante}==${index.index}?'active':''" th:each="p,index:${nbrPages}" class="btn btn-danger" >
+<a th:href="@{adherents(page=${index.index},size=${size},cin=${cin})}" th:text="..." class="btn btn-primary"> </a>
+
+
+</li>
+</ul>
+</div>
+<div layout:fragment="content">
+<form th:action="@{/adherents/addAdherent}" method="get">
+<button>Add Adherent </button>
+</form>
+</div>
+</body>
+</html>
